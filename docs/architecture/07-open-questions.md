@@ -22,6 +22,7 @@ Business gaps that change the design. Each has the assumption used in these docu
 | 9 | Do sites have limited storage (one week of stock) or can they hold a month? | Forecast buffer, delivery frequency | One to two weeks |
 | 10 | Will clients' office boys/receivers have smartphones and accounts? | Receiver role, POD by code | Yes; fallback is signature on driver device |
 | 11 | When will the second city open, and with its own warehouse? | Multi-warehouse from day one | Data model supports it; only Riyadh at launch |
+| 11a | ~~Which Riyadh areas are served at launch?~~ | Zones, slots, fleet size | **Decided 19 Nov 2026:** all of Riyadh city. Proposed: districts grouped into 5 zones (North, East, Central, West, South), each zone on fixed delivery days; exact district-to-zone mapping to be confirmed by dispatch |
 
 ## Finance and legal
 

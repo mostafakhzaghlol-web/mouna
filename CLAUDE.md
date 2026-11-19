@@ -90,6 +90,8 @@ Architecture draft (v0.1, 19 Nov 2026) is in `docs/architecture/`: modular-monol
 
 Also decided 19 Nov 2026: launch is web only — marketing site, mobile-first client portal, back office, and an offline field web app (PWA) for drivers and technicians; no native apps at launch. General ledger, payroll and VAT returns stay in a separate accounting package; the platform exports journal entries to it.
 
+Also decided 19 Nov 2026: Mouna is legally registered (CR and VAT in place). Delivery covers all of Riyadh city from launch. The starter catalogue uses the kitchen and washroom products commonly sold in Saudi supermarkets (Tamimi, Othaim type range); prices are estimates until distributor quotes arrive. Code lives in a private GitHub repository named `mouna`.
+
 Not decided yet: cloud provider, payment gateway, bank, accounting package, client ERP integrations.
 
 ## Build
