@@ -10,12 +10,12 @@ Status: ☐ not started · ◐ applied, waiting · ☑ active
 
 | # | Account | Needed for | Stage | Typical wait | Notes | Status |
 |---|---|---|---|---|---|---|
-| 1 | **Domain** — `mouna.sa` (and `mouna.com.sa`) | All web addresses, email | 9 | Days | `.sa` domains are registered through an accredited registrar under SaudiNIC; the name must match the CR or trademark. Check availability first | ☐ |
-| 2 | **Bank collection services** — virtual IBAN per client + SADAD biller number | Automatic payment matching | 8 | 4–8 weeks | Ask your bank's corporate team for "virtual accounts / collection" and SADAD biller registration | ☐ |
-| 3 | **Card payment gateway** — mada, Visa/Mastercard, Apple Pay | Card-paying clients | 8 | 2–6 weeks | Pick one SAMA-licensed gateway (e.g. Moyasar, HyperPay, Tap, PayTabs). Ask each for B2B fees and settlement days | ☐ |
-| 4 | **SMS sender name** ("Mouna") | One-time codes, delivery alerts | 4, 7 | 1–3 weeks | Through a local SMS provider (e.g. Unifonic, Taqnyat, Msegat); the provider registers the sender name with the regulator | ☐ |
-| 5 | **WhatsApp Business Platform** | Approvals, delivery notices | 4, 7 | 1–3 weeks | Meta business verification with CR documents, then display name and message template approvals. Many SMS providers also offer WhatsApp — one provider for both is simpler | ☐ |
-| 6 | **Cloud provider with a Saudi region** | Hosting staging and production | 10 | 1–4 weeks | Compare managed PostgreSQL, containers, storage and in-kingdom backups. Staging needed by February | ☐ |
+| 1 | **Domain** — `mouna.sa` (and `mouna.com.sa`) | All web addresses, email | 9 | Days | Founder will purchase. `.sa` domains are registered through an accredited registrar under SaudiNIC; the name must match the CR or trademark | ☐ |
+| 2 | **Stripe** — confirm settings | Card payments | 8 | Days | Account exists. Check: mada cards enabled, SAR settlement to Mouna's bank, business details match the CR. A test-mode key is enough until Stage 8 | ◐ |
+| 3 | **WhatsApp Business Platform (Cloud API)** — connect the registered number | Sign-in codes, approvals, delivery notices | 1, 4, 7 | 1–2 weeks | Number is registered. Needed: Meta business verification complete, API access for the number, and approval of message templates (Arabic + English). I'll write the templates; you submit them in Meta Business Manager | ◐ |
+| 4 | **Cloud provider with a Saudi region** | Hosting staging and production | 10 | 1–4 weeks | Compare managed PostgreSQL, containers, storage and in-kingdom backups. Staging needed by February | ☐ |
+| — | ~~Bank collection services (virtual IBAN, SADAD)~~ | — | — | — | Not needed (decided 20 Nov 2026). Clients pay by transfer quoting the invoice number; you'll need to download the bank statement daily as CSV/Excel | — |
+| — | ~~SMS sender name~~ | — | — | — | Not at launch: codes go by WhatsApp, email as fallback. Revisit after the pilot | — |
 
 ## Start in January 2027
 
@@ -50,4 +50,7 @@ Status: ☐ not started · ◐ applied, waiting · ☑ active
 | Item | Date |
 |---|---|
 | Company registered (CR, VAT) | Before 19 Nov 2026 |
-| GitHub account with private repository `mouna` | 19 Nov 2026 |
+| GitHub repository `mostafakhzaghlol-web/mouna`, code pushed | 20 Nov 2026 |
+| Stripe account | Before 20 Nov 2026 |
+| WhatsApp Business number registered | Before 20 Nov 2026 |
+| Saudi phone number | Before 20 Nov 2026 |

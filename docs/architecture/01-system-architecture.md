@@ -101,7 +101,7 @@ flowchart LR
 
 | Module | Owns | Key rules |
 |---|---|---|
-| **Identity & access** | Users, logins, sessions, roles, API keys | Email or phone + one-time code; password optional; 2FA mandatory for Mouna staff and client Finance/Admin; SSO (Microsoft / Google) for large clients |
+| **Identity & access** | Users, logins, sessions, roles, API keys | Phone (code by WhatsApp) or email (code by email) + one-time code; password optional; 2FA mandatory for Mouna staff and client Finance/Admin; SSO (Microsoft / Google) for large clients |
 | **Accounts & sites** | Client companies, legal entities (CRs), billing accounts, sites, departments, cost centres, headcount | A company can have several CRs; each site belongs to one billing account; headcount is kept per site with history (needed for cost per employee) |
 | **Catalogue & pricing** | Master products and variants, units (piece/pack/carton), categories, price lists, client contracts, approved catalogues | Price = client contract price → client tier price → list price; VAT 15% shown separately; Phase 2 categories hidden until launched |
 | **Ordering & approvals** | Requests, carts, orders, order lines, approval rules and decisions | Requests become orders only after approval; approval rules by amount, category, budget status, requester; credit check before confirmation |
@@ -117,7 +117,7 @@ flowchart LR
 | **Analytics** | Consumption facts, KPIs, anomaly flags, premium entitlements | Built from events into a reporting schema; never queries live transactional tables from dashboards |
 | **Sales & onboarding** | Leads, opportunities, site surveys, sales rep targets, contracts | Field reps work from the back office on a tablet; lead → client conversion creates the company, sites and credit application |
 | **Support** | Tickets, complaints, delivery issues, returns requests | Linked to an order, delivery or dispenser; SLA timers |
-| **Notifications** | Templates (AR/EN), channels, user preferences, delivery log | WhatsApp, SMS and email at launch (no client app yet); approvals delivered as WhatsApp links that open the request in the phone browser; app push added with the client app |
+| **Notifications** | Templates (AR/EN), channels, user preferences, delivery log | WhatsApp and email at launch (no client app, no SMS yet); approvals delivered as WhatsApp links that open the request in the phone browser; app push added with the client app |
 
 Cross-cutting: **audit log** (who changed what, when, from where) on every module; **file service** for images, PDFs and photos; **settings** per client company.
 
@@ -156,10 +156,10 @@ Cross-cutting: **audit log** (who changed what, when, from where) on every modul
 | **SIMAH (commercial)** | Credit reports for credit limit decisions | Contract needed; manual upload acceptable at launch |
 | **National Address (SPL)** | Validating and geocoding site addresses | Short address code for each site |
 | **Maps and routing** | Geocoding, route optimisation, live van location | Google Maps Platform or an open-source router (VROOM / OSRM) |
-| **Bank** | Virtual IBAN per client for automatic payment matching; bank statement import | Ask the bank about virtual account / collection services |
-| **SADAD** | Bill payment by clients' finance teams | Through the bank or a biller aggregator |
-| **Card gateway** | mada, Visa/Mastercard, Apple Pay for small or new clients | Local gateway (e.g. Moyasar, HyperPay, Tap, PayTabs) — to choose |
-| **SMS / WhatsApp** | One-time codes, approval requests, delivery alerts | Local SMS provider with registered sender ID; WhatsApp Business API |
+| **Bank** | Clients pay by bank transfer to Mouna's account, quoting the invoice number | No collection service (decided 20 Nov 2026). Finance uploads the bank statement (CSV/Excel) daily; the system matches lines to invoices by invoice number in the transfer reference, then by amount and client, and finance confirms the rest by hand |
+| **Stripe** (existing account) | Card payments: small or new clients at checkout, and any client paying an invoice by card through a payment link | Webhooks confirm payments; card details never touch Mouna's servers. Check that the account accepts mada cards and settles in SAR |
+| **WhatsApp Business** (registered number) | One-time sign-in codes (authentication templates), approval requests, delivery alerts | WhatsApp Business Platform (Cloud API). Every message type needs an approved template in Arabic and English |
+| **SMS** (later, if needed) | Fallback for one-time codes when a user has no WhatsApp | Not at launch: email is the fallback. Add an SMS provider with a registered sender name only if pilots show a need |
 | **Email and push** | Invoices, statements, reports; later, mobile notifications | Transactional email service at launch; Firebase / APNs when the client app arrives |
 | **Mouna's accounting package** | General ledger, payroll, VAT returns, supplier payments | Daily export of journal entries: invoices and credit notes (revenue, VAT output), purchases (VAT input), stock movements at cost (COGS, inventory value), payments received. Each entry carries the platform document number so accountants can trace it back. API if the chosen package has one; file import otherwise. Package not chosen yet (candidates: Odoo Accounting, Zoho Books, Qoyod, Daftra, SAP Business One) |
 | **Client ERPs (later)** | Sending invoices and orders into SAP, Oracle, Odoo, Microsoft Dynamics | Through a public API and webhooks; CSV/Excel export at launch |

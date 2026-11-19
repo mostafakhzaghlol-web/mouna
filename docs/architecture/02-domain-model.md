@@ -129,7 +129,8 @@ erDiagram
 - **ZATCA submission** — request, response, status (cleared / rejected / warnings), retry history.
 - **Credit note** — returns, damages, price corrections; also cleared with ZATCA and linked to the original invoice.
 - **Credit account and ledger** — limit, terms, and every charge, payment, credit note and write-off as ledger entries. Balance and ageing come from the ledger.
-- **Payment** — bank transfer (matched through virtual IBAN or reference), SADAD, card. One payment can settle several invoices.
+- **Payment** — bank transfer (matched from the uploaded bank statement by invoice reference, amount and client) or card through Stripe. One payment can settle several invoices.
+- **Bank statement line** — imported from the bank's CSV/Excel; status unmatched / suggested / matched / ignored, so no transfer is counted twice.
 
 ## 6. Analytics facts
 

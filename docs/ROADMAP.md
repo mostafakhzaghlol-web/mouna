@@ -29,7 +29,7 @@ What Claude cannot replace, and you should plan for:
 - ☑ Node.js 26 LTS (current LTS line) and pnpm 10 installed
 - ◐ Docker Desktop installed but cannot run: virtualization is disabled in this computer's BIOS/firmware. Workaround in place: PostgreSQL runs inside the project without Docker (`pnpm db:local`). To fix properly, turn on Intel VT-x / AMD-V (SVM) in the BIOS. Docker is needed later for building production images, which CI can also do.
 - ☑ Git repository created
-- ◐ GitHub account + private repository `mouna` created by founder; this computer still needs to be linked to it
+- ☑ GitHub repository `mostafakhzaghlol-web/mouna` linked; `main` and `setup/foundations` pushed
 - ☐ Outside accounts and approvals: see `docs/ACCOUNTS.md` (company is registered, so all can start)
 
 **Done when:** `pnpm dev` starts the empty apps locally.
@@ -128,3 +128,4 @@ Technical choices made in this stage: Node.js 26 LTS, pnpm workspaces + Turborep
 | 19 Nov 2026 | Architecture v0.1 written; decisions on payment, delivery, custom build, web first, separate accounting. Git repository created. Roadmap agreed. Node.js 26 LTS, pnpm 10 and Docker Desktop installed; restart needed to finish WSL2. |
 | 19 Nov 2026 | After restart: Docker blocked by firmware virtualization setting; switched local DB to embedded PostgreSQL. Stage 1 started: monorepo with 4 web apps + API scaffolded; all build, type-check and pass tests; API health check reaches the database; portal verified in Arabic (RTL) and English. |
 | 20 Nov 2026 | Founder confirmed: company registered, GitHub repo `mouna` exists, delivery covers all Riyadh, starter catalogue from supermarket-style range. Added accounts checklist (`docs/ACCOUNTS.md`) and 64-product starter catalogue (`data/catalogue`), prices still estimates. |
+| 20 Nov 2026 | Code pushed to GitHub. Decided: no bank collection service (statement upload + reference matching), cards via existing Stripe account, sign-in codes and notifications by WhatsApp (email fallback, no SMS at launch). Founder buying the domain. |

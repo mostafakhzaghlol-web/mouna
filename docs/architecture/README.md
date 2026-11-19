@@ -20,7 +20,8 @@ This folder describes how the Mouna platform is built: what applications exist, 
 
 | Topic | Decision | Source |
 |---|---|---|
-| Payment | Approved companies buy on credit and pay one consolidated monthly invoice (bank transfer / SADAD). Card payment for small or new clients. | Founder, 19 Nov 2026 |
+| Payment | Approved companies buy on credit and pay one consolidated monthly invoice by bank transfer (no virtual IBAN or SADAD service). Card payment through Mouna's existing Stripe account for small or new clients and for invoices. | Founder, 19–20 Nov 2026 |
+| Messaging | WhatsApp Business (already registered) for sign-in codes and notifications, email as fallback. No SMS at launch. | Founder, 20 Nov 2026 |
 | Delivery | Mouna runs its own Riyadh warehouse and its own fleet of vans, drivers and technicians, on fixed weekly routes. | Founder, 19 Nov 2026 |
 | Web first | Launch on the web only: marketing site, client portal (mobile-first), back office, and a field web app for drivers and technicians. The client mobile app comes later, after the portal has been tested with real clients. | Founder, 19 Nov 2026 |
 | Build | Fully custom: client portal, field web app **and** back office (inventory, purchasing, invoicing, ZATCA) are built in-house. No off-the-shelf ERP. | Founder, 19 Nov 2026 |
@@ -63,9 +64,9 @@ flowchart LR
     CAPP -.-> API
 
     API <--> ZATCA[ZATCA Fatoora]
-    API <--> BANK[Bank / SADAD / card gateway]
+    API <--> BANK[Bank statements / Stripe]
     API <--> WATHQ[Wathq CR lookup]
-    API <--> MSG[SMS / WhatsApp / email / push]
+    API <--> MSG[WhatsApp / email]
     API <--> MAPS[Maps & National Address]
 ```
 

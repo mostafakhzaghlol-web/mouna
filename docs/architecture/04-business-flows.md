@@ -156,7 +156,7 @@ sequenceDiagram
     S->>W: Pick list per trip (batch pick by zone, FEFO lots)
     W->>S: Picked and packed, labelled per stop (scan)
     V->>S: Load check: scan every package onto the van
-    S->>R: SMS/WhatsApp: "Delivery today 9–11, driver Ahmed"
+    S->>R: WhatsApp: "Delivery today 9–11, driver Ahmed"
     V->>S: Arrive at stop (GPS)
     V->>R: Hand over; receiver checks quantities
     R->>V: One-time code or signature
@@ -206,13 +206,14 @@ flowchart TD
 | Days after due date | Action (automatic) |
 |---|---|
 | −5 | Friendly reminder to Finance users |
-| 0 | Due-today notice with payment details (virtual IBAN, SADAD number) |
+| 0 | Due-today notice with payment details (Mouna bank account + invoice number to quote, card payment link) |
 | +7 | Reminder + account manager task to call |
 | +15 | Warning: orders will be held at +30 |
 | +30 | **Credit hold**: new orders cannot be confirmed; standing orders pause; client admin, Finance and account manager notified |
 | +60 | Escalation to management; dispenser recovery plan considered |
 
-- Payments arrive by bank transfer to the client's virtual IBAN (auto-matched), SADAD (auto-matched), card (instant), or manual entry by finance with the bank reference.
+- Payments arrive by **bank transfer** to Mouna's account or by **card** through Stripe (confirmed instantly by webhook).
+- Bank transfers are matched from the daily bank statement that finance uploads: first by invoice number in the transfer reference, then by exact amount + client name; anything left over goes to a "to match" queue for finance. Invoices and reminders always tell the client which reference to quote.
 - Unallocated payments go to oldest invoice first unless the client specifies.
 - Credit controller can release a hold for a set period with a reason.
 

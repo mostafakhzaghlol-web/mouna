@@ -30,8 +30,8 @@ Business gaps that change the design. Each has the assumption used in these docu
 |---|---|---|---|
 | 12 | Is the monthly summary tax invoice confirmed with the tax advisor, and the issuance deadline? | Billing design | Allowed; issued by the 15th of the following month |
 | 13 | Mouna's ZATCA Phase 2 integration wave as a new taxpayer? | When clearance is mandatory | Build compliant from the first invoice |
-| 14 | Which bank: does it offer virtual IBANs and SADAD biller service? | Automatic payment matching | Yes; to confirm |
-| 15 | Card gateway choice? | Integration work | To choose among local providers |
+| 14 | ~~Virtual IBANs and SADAD?~~ | Payment matching | **Decided 20 Nov 2026:** not needed. Bank transfers matched from uploaded statements by invoice reference |
+| 15 | ~~Card gateway choice?~~ | Integration work | **Decided 20 Nov 2026:** existing Stripe account. To check: mada cards accepted and SAR settlement |
 | 16 | Will Mouna use SIMAH reports for credit decisions? | Credit flow | Manual upload at launch |
 | 17 | ~~Accounting: does Mouna's own bookkeeping (general ledger, payroll, VAT returns) also live in the platform?~~ | "Fully custom" scope | **Decided 19 Nov 2026:** separate accounting package. The platform produces sales, purchasing, stock and payment records and exports them as journal entries. Which package is still open |
 
