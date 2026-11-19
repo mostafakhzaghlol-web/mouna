@@ -1,0 +1,19 @@
+# Local development services only. Production runs on the KSA cloud (see docs/architecture/01).
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: mouna
+      POSTGRES_PASSWORD: mouna_dev
+      POSTGRES_DB: mouna
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mouna"]
+      interval: 5s
+      retries: 10
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+volumes:
+  pgdata:

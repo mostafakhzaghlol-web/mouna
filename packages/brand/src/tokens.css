@@ -1,0 +1,26 @@
+/* Mouna design tokens. Import once per app, after tailwindcss. */
+:root {
+  --color-pine: #0f5c52;
+  --color-pine-dark: #0a4038;
+  --color-saffron: #e9a23b;
+  --color-ink: #12211e;
+  --color-ink-muted: #4a5b57;
+  --color-mist: #c4dad2;
+  --color-paper: #f6f8f5;
+  --color-surface: #ffffff;
+  --color-danger: #b3261e;
+
+  /* --font-grotesk, --font-inter, --font-plex-ar are set by next/font in each app's layout. */
+  --font-heading: var(--font-grotesk, "Space Grotesk"), var(--font-plex-ar, "IBM Plex Sans Arabic"), system-ui, sans-serif;
+  --font-body: var(--font-inter, "Inter"), var(--font-plex-ar, "IBM Plex Sans Arabic"), system-ui, sans-serif;
+
+  --radius: 10px;
+}
+
+:root[dir="rtl"] {
+  --font-heading: var(--font-plex-ar, "IBM Plex Sans Arabic"), var(--font-grotesk, "Space Grotesk"), system-ui, sans-serif;
+  --font-body: var(--font-plex-ar, "IBM Plex Sans Arabic"), var(--font-inter, "Inter"), system-ui, sans-serif;
+}
+
+html { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-body); }
+h1, h2, h3 { font-family: var(--font-heading); }

@@ -1,0 +1,8 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+  - "tools"
+onlyBuiltDependencies:
+  - "@embedded-postgres/windows-x64"
+  - esbuild
+  - "@nestjs/core"
