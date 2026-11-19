@@ -37,13 +37,34 @@ Then, in one terminal:
 pnpm db:local
 ```
 
-and in another:
+and in another, once:
+
+```powershell
+pnpm db:migrate
+```
+
+```powershell
+pnpm db:seed
+```
+
+then every time:
 
 ```powershell
 pnpm dev
 ```
 
 Check the API: http://localhost:4000/health/ready should answer `{"status":"ok","database":"ok"}`.
+
+### Test accounts (seed data, development only)
+
+| App | Sign in with | Who |
+|---|---|---|
+| Back office http://localhost:3002 | `admin@mouna.test` | Mouna super admin |
+| Back office | `sales@mouna.test` | Sales rep |
+| Client portal http://localhost:3001 | `0500000001` | Client admin of "Demo Trading Co." |
+| Client portal | `0500000002` | Requester limited to one site |
+
+Codes are not sent anywhere yet: they appear in the API's log, and in development the sign-in screen has a "Development: show code" button.
 
 ## Everyday commands
 
@@ -54,6 +75,11 @@ Check the API: http://localhost:4000/health/ready should answer `{"status":"ok",
 | `pnpm typecheck` | Type-checks every package |
 | `pnpm test` | Runs all tests |
 | `pnpm db:local` | Starts PostgreSQL on port 5432 without Docker (data in `.data/pg`) |
+| `pnpm db:migrate` | Applies database migrations |
+| `pnpm db:seed` | Adds development test data (safe to repeat) |
+| `pnpm --filter @mouna/api db:generate` | Creates a new migration after changing `apps/api/src/db/schema.ts` |
+
+API tests use a separate database, `mouna_test`, rebuilt on every run; `pnpm db:local` must be running.
 
 ## Conventions
 

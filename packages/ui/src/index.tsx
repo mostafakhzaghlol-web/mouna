@@ -25,7 +25,20 @@ export function LanguageSwitch({ locale, path = "" }: { locale: Locale; path?: s
   );
 }
 
-export function AppShell({ locale, appName, children }: { locale: Locale; appName: string; children: ReactNode }) {
+export function AppShell({
+  locale,
+  appName,
+  children,
+  path = "",
+  nav,
+}: {
+  locale: Locale;
+  appName: string;
+  children: ReactNode;
+  /** Current path after the locale, so the language switch stays on the same page. */
+  path?: string;
+  nav?: ReactNode;
+}) {
   return (
     <div className="min-h-dvh">
       <header className="flex items-center justify-between border-b border-[var(--color-mist)] bg-white px-4 py-3 sm:px-6">
@@ -33,21 +46,32 @@ export function AppShell({ locale, appName, children }: { locale: Locale; appNam
           <Wordmark locale={locale} />
           <span className="text-sm text-[var(--color-ink-muted)]">{appName}</span>
         </div>
-        <LanguageSwitch locale={locale} />
+        <div className="flex items-center gap-3">
+          {nav}
+          <LanguageSwitch locale={locale} path={path} />
+        </div>
       </header>
       <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6">{children}</main>
     </div>
   );
 }
 
-export function Button({ children, variant = "primary", ...rest }: { children: ReactNode; variant?: "primary" | "secondary" } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
+export function Button({
+  children,
+  variant = "primary",
+  className = "",
+  ...rest
+}: { children: ReactNode; variant?: "primary" | "secondary" } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   const styles =
     variant === "primary"
       ? "bg-[var(--color-pine)] text-white hover:bg-[var(--color-pine-dark)]"
       : "border border-[var(--color-mist)] bg-white text-[var(--color-ink)] hover:bg-[var(--color-paper)]";
   return (
-    <button className={`rounded-[var(--radius)] px-4 py-2 font-medium ${styles}`} {...rest}>
+    <button className={`rounded-[var(--radius)] px-4 py-2 font-medium disabled:opacity-50 ${styles} ${className}`} {...rest}>
       {children}
     </button>
   );
 }
+
+export * from "./forms";
+export { api, ApiError, fieldErrors } from "./api";

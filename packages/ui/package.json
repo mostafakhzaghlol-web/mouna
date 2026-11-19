@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.tsx"
+    ".": "./src/index.tsx",
+    "./sign-in": "./src/sign-in.tsx"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
@@ -14,6 +15,7 @@
     "@mouna/i18n": "workspace:*"
   },
   "devDependencies": {
+    "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "react": "^19.3.1"
   },

@@ -12,6 +12,8 @@ const pg = new EmbeddedPostgres({
   password: "mouna_dev",
   port: 5432,
   persistent: true,
+  // Arabic text needs UTF-8. Without this, Windows initialises the cluster as WIN1252.
+  initdbFlags: ["--encoding=UTF8", "--locale=C", "--lc-messages=C"],
 });
 
 if (!existsSync(resolve(dataDir, "PG_VERSION"))) {

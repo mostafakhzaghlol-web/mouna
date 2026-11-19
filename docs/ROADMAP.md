@@ -36,11 +36,13 @@ What Claude cannot replace, and you should plan for:
 
 ### Stage 1 · Foundations ◐ (target: 3 weeks)
 - ☑ Monorepo: `apps/api`, `apps/portal`, `apps/ops`, `apps/field`, `apps/web`; `packages/brand`, `packages/i18n`, `packages/ui`
-- ◐ Local environment: PostgreSQL running locally (no Docker); Redis not needed until background jobs; seed data to come
-- ☐ CI: lint, type-check, tests on every push (needs GitHub)
-- ◐ Design system: brand tokens, fonts, Arabic/English with RTL, first components (wordmark, language switch, shell, button)
-- ☐ Identity: phone/email + one-time code, sessions, roles, 2FA for staff
-- ☐ Accounts & sites: companies, legal entities, billing accounts, sites, cost centres, users, headcount
+- ☑ Local environment: PostgreSQL running locally in UTF-8 (no Docker); migrations (`pnpm db:migrate`) and seed data (`pnpm db:seed`). Redis not needed until background jobs
+- ◐ CI: GitHub Actions runs type-check, build and tests (with a PostgreSQL service) on every push; lint still to add
+- ◐ Design system: brand tokens, fonts, Arabic/English with RTL, shell, buttons, form fields, cards, badges, error notes
+- ◐ Identity: sign-in with one-time codes (WhatsApp for mobiles, email for addresses), rate limits, 5-try lock, cookie sessions per app, staff roles, client roles with site scope, audit log. Still to do: real WhatsApp/email delivery (Stage 7; codes show in the API log and a dev-only button for now) and a second factor for staff
+- ☑ Accounts & sites: companies, legal entities (CR/VAT), billing accounts, sites with zones and short address, headcount history, cost centres, invited members; back-office screens and portal home
+
+**Done-when check (20 Nov 2026): passed.** In the browser: admin signed in to the back office, created a client in Arabic with two sites and an invited client admin; she signed in on a phone-sized portal with a code and saw her company, role and both sites. Covered by 16 API tests.
 
 Technical choices made in this stage: Node.js 26 LTS, pnpm workspaces + Turborepo, TypeScript 6 (TypeScript 7 is out but tooling support for NestJS decorators is not proven yet), Next.js 16 + Tailwind 4, NestJS 12, Drizzle ORM on PostgreSQL 17.
 
@@ -129,3 +131,4 @@ Technical choices made in this stage: Node.js 26 LTS, pnpm workspaces + Turborep
 | 19 Nov 2026 | After restart: Docker blocked by firmware virtualization setting; switched local DB to embedded PostgreSQL. Stage 1 started: monorepo with 4 web apps + API scaffolded; all build, type-check and pass tests; API health check reaches the database; portal verified in Arabic (RTL) and English. |
 | 20 Nov 2026 | Founder confirmed: company registered, GitHub repo `mouna` exists, delivery covers all Riyadh, starter catalogue from supermarket-style range. Added accounts checklist (`docs/ACCOUNTS.md`) and 64-product starter catalogue (`data/catalogue`), prices still estimates. |
 | 20 Nov 2026 | Code pushed to GitHub. Decided: no bank collection service (statement upload + reference matching), cards via existing Stripe account, sign-in codes and notifications by WhatsApp (email fallback, no SMS at launch). Founder buying the domain. |
+| 20 Nov 2026 | Stage 1 core done: database schema + migrations, one-time-code sign-in, companies/sites/members API with role checks and audit log, back-office client screens, portal home. Fixed: local DB was WIN1252 (now UTF-8), wrong site count. 20 tests pass. CI added on GitHub. |

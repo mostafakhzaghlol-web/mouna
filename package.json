@@ -13,7 +13,9 @@
     "test": "turbo run test",
     "db:up": "docker compose up -d postgres redis",
     "db:down": "docker compose down",
-    "db:local": "pnpm --filter @mouna/tools db"
+    "db:local": "pnpm --filter @mouna/tools db",
+    "db:migrate": "pnpm --filter @mouna/api db:migrate",
+    "db:seed": "pnpm --filter @mouna/api db:seed"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
